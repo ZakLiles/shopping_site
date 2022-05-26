@@ -77,6 +77,9 @@ def show_shopping_cart():
     #
     # Make sure your function can also handle the case wherein no cart has
     # been added to the session
+    if 'cart' not in session:
+        session['cart']={}
+        
     cart = session['cart']
     cart_melon_list = []
     cart_total = 0

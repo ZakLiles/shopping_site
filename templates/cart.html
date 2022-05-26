@@ -18,13 +18,13 @@
                 <td>{{ melon.common_name }}</td>
                 <td>{{ melon.quantity }}</td>
                 <td>{{ melon.price_str() }}</td>
-                <td>${{ melon.total_cost_str() }}</td>
+                <td>{{ "${:,.2f}".format(melon.total_cost) }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <h3>Total: ${{ cart_total }}</h3>
+    <h3>Total: {{ "${:,.2f}".format(cart_total) }}</h3>
 
     <a href="/checkout" class="btn btn-large btn-primary">Check Out</a>
 
