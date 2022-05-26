@@ -78,9 +78,18 @@ def show_shopping_cart():
     # Make sure your function can also handle the case wherein no cart has
     # been added to the session
     cart = session['cart']
+    cart_melon_list = []
+    cart_total = 0
 
+    for melon_id, melon_qty in cart.items():
+        melon = melons.get_by_id(melon_id)
+        total_melon_cost = melon.price * melon_qty
+        cart_total += total_melon_cost
+        melon.quantity = melon_qty
+        melon.total_cost = total_melon_cost
+        cart_melon_list.append(melon)
     
-    return render_template("cart.html")
+    return render_template("cart.html", cart_total=cart_total, cart_melon_list=cart_melon_list )
 
 
 @app.route("/add_to_cart/<melon_id>")
